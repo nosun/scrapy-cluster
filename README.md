@@ -2,24 +2,26 @@
 
 [![Build Status](https://travis-ci.org/istresearch/scrapy-cluster.svg?branch=master)](https://travis-ci.org/istresearch/scrapy-cluster) [![Documentation](https://readthedocs.org/projects/scrapy-cluster/badge/?version=latest)](http://scrapy-cluster.readthedocs.io/en/latest/) [![Join the chat at https://gitter.im/istresearch/scrapy-cluster](https://badges.gitter.im/istresearch/scrapy-cluster.svg)](https://gitter.im/istresearch/scrapy-cluster?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Coverage Status](https://coveralls.io/repos/github/istresearch/scrapy-cluster/badge.svg?branch=master)](https://coveralls.io/github/istresearch/scrapy-cluster?branch=master) [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/istresearch/scrapy-cluster/blob/master/LICENSE) [![Docker Pulls](https://img.shields.io/docker/pulls/istresearch/scrapy-cluster.svg)](https://hub.docker.com/r/istresearch/scrapy-cluster/)
 
-This Scrapy project uses Redis and Kafka to create a distributed on demand scraping cluster.
+本项目拷贝自 https://github.com/istresearch/scrapy-cluster
+
+项目基于 scrapy, redis, kafka 创建分布式爬虫集群
 
 The goal is to distribute seed URLs among many waiting spider instances, whose requests are coordinated via Redis. Any other crawls those trigger, as a result of frontier expansion or depth traversal, will also be distributed among all workers in the cluster.
 
 The input to the system is a set of Kafka topics and the output is a set of Kafka topics. Raw HTML and assets are crawled interactively, spidered, and output to the log. For easy local development, you can also disable the Kafka portions and work with the spider entirely via Redis, although this is not recommended due to the serialization of the crawl requests.
 
-## Dependencies
+## 项目依赖
 
-Please see the ``requirements.txt`` within each sub project for Pip package dependencies.
+查看项目以及子目录中 ``requirements.txt``
 
-Other important components required to run the cluster
+其他的依赖：
 
 - Python 2.7: https://www.python.org/downloads/
 - Redis: http://redis.io
 - Zookeeper: https://zookeeper.apache.org
 - Kafka: http://kafka.apache.org
 
-## Core Concepts
+## 核心理念
 
 This project tries to bring together a bunch of new concepts to Scrapy and large scale distributed crawling in general. Some bullet points include:
 
